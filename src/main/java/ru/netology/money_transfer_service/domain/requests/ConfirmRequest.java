@@ -6,16 +6,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Validated
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConfirmRequest {
-//    @NotNull
-//    private final String operationId;
+    private String operationId;
     @NotNull
-    @Size(min = 4, max = 6)
+    @Pattern(regexp = "\\d{4}")
     private String code;
 }

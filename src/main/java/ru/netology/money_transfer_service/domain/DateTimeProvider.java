@@ -16,25 +16,33 @@ public abstract class DateTimeProvider {
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
     private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(timePattern);
 
-    public static String getNow() {
-        return LocalDateTime.now().format(dateTimeFormatter);
+    public static LocalDateTime getNow() {
+        return LocalDateTime.now();
     }
 
-    public static String getNowDate() {
+    public static String getNowString() {
+        return getNow().format(dateTimeFormatter);
+    }
+
+    public static String getNowDateString() {
         return LocalDate.now().format(dateFormatter);
     }
 
-    public static String getNowTime() {
+    public static String getNowTimeString() {
         return LocalTime.now().format(timeFormatter);
     }
 
     public static JsonDateTime getNowJson() {
-        return new JsonDateTime(getNowDate(), getNowTime());
+        return new JsonDateTime(getNowDateString(), getNowTimeString());
     }
 
     public static String getNowWithFormat(String customFormat) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(customFormat);
-        return LocalDateTime.now().format(formatter);
+        return getNow().format(formatter);
+    }
+
+    public static String timeToString(LocalDateTime ldt) {
+        return ldt.format(dateTimeFormatter);
     }
 
     public static void setDelimeter(String pattern) {

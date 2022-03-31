@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  release:
+    image: "money_transfer_service"
+    build: ./
+    container_name: "money_transfer_service"
+    ports:
+      - "5500:5500"

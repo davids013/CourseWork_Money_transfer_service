@@ -6,23 +6,23 @@ import org.springframework.validation.annotation.Validated;
 import ru.netology.money_transfer_service.domain.Amount;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Validated
 @AllArgsConstructor
 public class TransferRequest {
     @NotNull
-    @Size(min = 16, max = 16)
+    @Pattern(regexp = "\\d{16}")
     private String cardFromNumber;
     @NotNull
-    @Size(min = 5, max = 5)
+    @Pattern(regexp = "[01][0-9]/[2-9][0-9]")
     private transient String cardFromValidTill;
     @NotNull
-    @Size(min = 3, max = 3)
+    @Pattern(regexp = "\\d{3}")
     private transient String cardFromCVV;
     @NotNull
-    @Size(min = 16, max = 16)
+    @Pattern(regexp = "\\d{16}")
     private String cardToNumber;
     @NotNull
     private Amount amount;
